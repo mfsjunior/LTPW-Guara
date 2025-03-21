@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         version="5.0">
+
+    <context-param>
+        <param-name>jakarta.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+	 <context-param>
+	    <param-name>jakarta.faces.FACELETS_SKIP_COMMENTS</param-name>
+	    <param-value>true</param-value>
+	</context-param>
+
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+    <!-- PrimeFaces Configuration -->
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>nova-light</param-value> <!-- Define um tema para o PrimeFaces -->
+    </context-param>
+
+    <!-- Define a página de login como inicial -->
+    <welcome-file-list>
+        <welcome-file>login.xhtml</welcome-file>
+    </welcome-file-list>
+
+    <!-- Filtro de Autenticação -->
+    <filter>
+        <filter-name>FiltroAutenticacao</filter-name>
+        <filter-class>br.com.meuapp.filters.FiltroAutenticacao</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>FiltroAutenticacao</filter-name>
+        <url-pattern>/index.xhtml</url-pattern> <!-- Protege index.xhtml -->
+    </filter-mapping>
+    
+
+</web-app>
